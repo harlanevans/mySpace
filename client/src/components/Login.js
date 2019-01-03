@@ -4,12 +4,13 @@ import { Segment, Button, Header, Form } from 'semantic-ui-react';
 
 
 class Login extends React.Component {
-  state = { email: ' ', password: ' ', }
+  state = { email: '', password: '', }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, } = this.state;
-    this.props.auth.handleLogin({ email, password, }, this.props.history);
+    const { auth: { handleLogin, }, history, } = this.props;
+    handleLogin({ email, password, }, history);
   }
 
   handleChange = (e) => {
