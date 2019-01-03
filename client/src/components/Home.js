@@ -7,12 +7,10 @@ const Home = () => (
   textAlign="center"
   >
   <br />
+  <div>
   {/* Put some if else statment here. If not signed in, put this below. If signed in make a different Home page look */}
-  Please 
-  <Link to='/login' >
-   Sign In  
-  </Link>
-  to View Your Friends and Space.
+  Please<Link to='/login'> Sign In </Link> to View Your Friends and Space.
+  </div>
   </Header>
 )
 

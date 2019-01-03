@@ -10,11 +10,11 @@ export class AuthProvider extends React.Component {
   handleRegister = (user, history) => {
     axios.post("/api/auth", user)
     .then( res =>  {
-      this.setState({ user: res.data, });
+      this.setState({ user: res.data.data, });
       history.push('/');
     })
     .catch( res => {
-      console.log(res);
+      window.alert(res.response.data.errors.full_messages)
     })
   }
 

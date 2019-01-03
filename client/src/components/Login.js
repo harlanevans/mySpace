@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from '../providers/AuthProvider';
-import { Segment, Button, Header, Form } from 'semantic-ui-react';
+import { Segment, Button, Header, Form, Icon } from 'semantic-ui-react';
 
 
 class Login extends React.Component {
@@ -27,7 +27,7 @@ class Login extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             label="Email"
-            autofocus
+            autoFocus
             required
             name='email'
             value={email}
@@ -44,7 +44,13 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign="center" basic>
-          <Button primary type='submit'>Submit</Button>
+          <Button primary animated icon type='submit'>
+          <Button.Content hidden>
+          <Icon name='check' />
+          </Button.Content>
+          <Button.Content visible>Submit
+          </Button.Content>
+          </Button>
           </Segment>
         </Form>
       </Segment>

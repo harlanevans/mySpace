@@ -37,7 +37,7 @@ class Navbar extends React.Component {
               active={location.pathname === '/location'}
             >
             <Icon name='signup'/>
-            Sign Up
+            Sign Up!
             </Menu.Item>
           </Link>
         </Menu.Menu>
@@ -52,7 +52,9 @@ class Navbar extends React.Component {
 
           <Menu.Item name="users">
             <Icon name="users" />
-            Welcome to MySpace
+            <b>
+              mySpace
+              </b>
           </Menu.Item>
 
           <Link to='/'>
