@@ -1,17 +1,80 @@
 import React from 'react';
-import { Header, } from "semantic-ui-react";
+import axios from 'axios';
+import { Header, Card, Icon, Button, Image, Container } from "semantic-ui-react";
 import { Link, } from 'react-router-dom';
 
-const Home = () => (
-  <Header as='h2'
-  textAlign="center"
-  >
-  <br />
-  <div>
-  {/* Put some if else statment here. If not signed in, put this below. If signed in make a different Home page look */}
-  Please<Link to='/login'> Sign In </Link> to View Your Friends and Space.
-  </div>
-  </Header>
-)
+class Home extends React.Component {
+  state = { friends: [], };
+
+  componentDidMount() {
+    axios.get('/api/friends')
+      .then(res => this.setState({ friends: res.data, }));
+  }
+
+  sample = () => {
+    const { friends, } = this.state;
+    if (friends.length) {
+      const index = Math.floor(Math.random() * friends.length);
+      return friends[index];
+    } else {
+      return null;
+    }
+  }
+
+  unfollow = (id) => {
+    const { friends, } = this.state;
+    this.setState({ friends: friends.filter(f => f.id !== id) })
+  }
+
+  follow = (id) => {
+    const { friends, } = this.state;
+    axios.put(`/api/friends/${id}`)
+      .then(() => this.setState({ friends: friends.filter(f => f.id !== id) }));
+  }
+
+  render() {
+    const friend = this.sample();
+    if (friend) {
+      return (
+        <Container>
+          <br />
+          <Header as="h3" textAlign='center'>New mySpace Friends</Header>
+          <br />
+          <Card 
+          centered
+          key={friend.id}
+          textAlign='center'
+          >
+            <Image src={friend.avatar} />
+            <Card.Content>
+              <Card.Header>
+                {friend.name}
+              </Card.Header>
+              <Card.Description>
+                {friend.age}
+              </Card.Description>
+              <Card.Meta>
+                {friend.location}
+              </Card.Meta>
+            </Card.Content>
+            <Card.Content extra>
+              <Button color="red" icon basic onClick={() => this.unfollow(friend.id)}>
+                <Icon name="thumbs down" />
+              </Button>
+              <Button color="green" icon basic onClick={() => this.follow(friend.id)}>
+                <Icon name="thumbs up" />
+              </Button>
+            </Card.Content>
+          </Card>
+          <br />
+          <br />
+          <br />
+        </Container>
+      )
+    } else {
+      return <Header textAlign='center'>You don't have any friends :(</Header>
+    }
+  }
+}
 
 export default Home;

@@ -10,11 +10,14 @@ class Navbar extends React.Component {
 
     if (user) {
       return (
-        <Menu.Menu position="right">
+        <Menu.Menu icon='labeled' position="right">
           <Menu.Item
             name='logout'
             onClick={() => handleLogout(this.props.history)}
-          />
+          >
+            <Icon name='times circle outline' />
+            Logout
+          </Menu.Item>
         </Menu.Menu>
       )
     } else {
@@ -26,8 +29,8 @@ class Navbar extends React.Component {
               name="login"
               active={location.pathname === '/login'}
             >
-            <Icon name='user circle'/>
-            Login
+              <Icon name='user circle' />
+              Login
             </Menu.Item>
           </Link>
           <Link to='/register'>
@@ -36,8 +39,8 @@ class Navbar extends React.Component {
               name='register'
               active={location.pathname === '/location'}
             >
-            <Icon name='signup'/>
-            Sign Up!
+              <Icon name='signup' />
+              Sign Up!
             </Menu.Item>
           </Link>
         </Menu.Menu>
@@ -48,13 +51,17 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <Menu icon='labeled' secondary color='blue' inverted basic>
-
+        <Menu
+          icon='labeled'
+          secondary
+          color='blue'
+          inverted>
+          
           <Menu.Item name="users">
             <Icon name="users" />
             <b>
               mySpace
-              </b>
+            </b>
           </Menu.Item>
 
           <Link to='/'>
@@ -65,25 +72,34 @@ class Navbar extends React.Component {
             >
               <Icon name="home" />
               Home
-            </Menu.Item >
+          </Menu.Item >
           </Link>
-            {this.rightNavItems()}
+
+          <Link to="/my_friends">
+            <Menu.Item name='friends'>
+              <Icon name='smile outline' />
+              My Friends
+            </Menu.Item>
+          </Link>
+
+          {this.rightNavItems()}
         </Menu>
+
       </div>
-        )
-      }
-    }
-    
+    )
+  }
+}
+
 export class ConnectedNavbar extends React.Component {
-          render() {
-        return (
+  render() {
+    return (
       <AuthConsumer>
-          {auth =>
-            <Navbar {...this.props} auth={auth} />
-          }
-        </AuthConsumer>
-        )
-      }
-    }
-    
+        {auth =>
+          <Navbar {...this.props} auth={auth} />
+        }
+      </AuthConsumer>
+    )
+  }
+}
+
 export default withRouter(ConnectedNavbar);

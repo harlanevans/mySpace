@@ -29,7 +29,7 @@ class FetchUser extends React.Component {
   loaded = () => this.setState({ loaded: true, });
 
   checkLocalToken = () => {
-    const token = localStorage.getItem('access-token');
+    const token = localStorage.getItem("access-token");
     return token;
   }
 
