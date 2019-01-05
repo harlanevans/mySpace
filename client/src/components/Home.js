@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Header, Card, Icon, Button, Image, Container } from "semantic-ui-react";
+import { Header, Card, Icon, Button, Image, Container, Divider } from "semantic-ui-react";
 import { Link, } from 'react-router-dom';
 
 class Home extends React.Component {
@@ -40,10 +40,9 @@ class Home extends React.Component {
           <br />
           <Header as="h3" textAlign='center'>New mySpace Friends</Header>
           <br />
-          <Card 
-          centered
-          key={friend.id}
-          textAlign='center'
+          <Card
+            centered
+            key={friend.id}
           >
             <Image src={friend.avatar} />
             <Card.Content>
@@ -58,11 +57,21 @@ class Home extends React.Component {
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
-              <Button color="red" icon basic onClick={() => this.unfollow(friend.id)}>
-                <Icon name="thumbs down" />
+              <Button color="green" icon animated floated='left' basic onClick={() => this.follow(friend.id)}>
+                <Button.Content visible>
+                  Follow
+                </Button.Content>
+                <Button.Content hidden>
+                  <Icon name="thumbs up" />
+                </Button.Content>
               </Button>
-              <Button color="green" icon basic onClick={() => this.follow(friend.id)}>
-                <Icon name="thumbs up" />
+              <Button color="red" icon floated='right' animated basic onClick={() => this.unfollow(friend.id)}>
+                <Button.Content visible>
+                Skip
+                </Button.Content>
+                <Button.Content hidden>
+                  <Icon name="thumbs down" />
+                </Button.Content>
               </Button>
             </Card.Content>
           </Card>

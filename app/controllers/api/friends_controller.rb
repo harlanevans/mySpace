@@ -10,6 +10,11 @@ class Api::FriendsController < ApplicationController
     current_user.save
   end
 
+  def show
+    @friend = Friend.find(params[:id])
+    render json: @friend
+  end
+
   def my_friends
     render json: User.follow(current_user.follow_friends)
   end
