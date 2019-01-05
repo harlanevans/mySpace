@@ -58,19 +58,15 @@ class Home extends React.Component {
             </Card.Content>
             <Card.Content extra>
               <Button color="green" icon animated floated='left' basic onClick={() => this.follow(friend.id)}>
-                <Button.Content visible>
-                  Follow
-                </Button.Content>
+                <Button.Content visible>Follow</Button.Content>
                 <Button.Content hidden>
-                  <Icon name="thumbs up" />
+                  <Icon name="thumbs up"/>
                 </Button.Content>
               </Button>
               <Button color="red" icon floated='right' animated basic onClick={() => this.unfollow(friend.id)}>
-                <Button.Content visible>
-                Skip
-                </Button.Content>
+                <Button.Content visible textAlign='center'>Skip</Button.Content>
                 <Button.Content hidden>
-                  <Icon name="thumbs down" />
+                  <Icon name="thumbs down"/>
                 </Button.Content>
               </Button>
             </Card.Content>

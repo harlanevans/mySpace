@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
-import { Segment, Header, Grid, Menu, Image,  } from 'semantic-ui-react';
+import { Segment, Header, Button, Icon, Image, SegmentGroup,  } from 'semantic-ui-react';
 
 
 class Friend extends React.Component {
@@ -22,25 +22,44 @@ class Friend extends React.Component {
     return (
       <div>
         <br />
+        <Link to="/my_friends">
+        <Button
+        basic
+        color='blue'
+        animated
+        >
+        <Button.Content visible>
+        Back to My Friends
+        </Button.Content>
+        <Button.Content hidden>
+        <Icon name='left arrow' />
+        </Button.Content>
+        </Button>
+        </Link>
+        <br />
         <Image 
         size='small-medium'
         circular
         centered
         src={ avatar } />
-        <Header as='h2' textAlign='center'>
-          {name}
-        </Header>
         <br />
-            <Segment.Group >
-              <Segment color='blue' inverted textAlign='center'>
+        <div>
+
+              <Segment basic textAlign='center'>
+              <Header as='h3'>
+              {name}
+              </Header>
+              </Segment>
+
+              <Segment basic textAlign='center'>
               Age: {age}
-
               </Segment>
-              <Segment color='blue' inverted textAlign='center' >
+
+
+              <Segment basic textAlign='center'>
               City: {location}
-
               </Segment>
-          </Segment.Group>
+        </div>
       </div>
     )
   }
